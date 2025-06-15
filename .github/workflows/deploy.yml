@@ -22,7 +22,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular app
-        run: npm run build -- --output-path=dist/web-la-sistemas --base-href=/WebAngular/
+        run: npm run build -- --output-path=dist/browser --base-href=/WebAngular/
 
       - name: Configure Git user
         run: |
@@ -30,4 +30,4 @@ jobs:
           git config --global user.name "github-actions[bot]"
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/web-la-sistemas --no-silent
+        run: npx angular-cli-ghpages --dir=dist/browser --no-silent

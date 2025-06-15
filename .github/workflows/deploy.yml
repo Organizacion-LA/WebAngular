@@ -3,7 +3,7 @@ name: Build and Deploy Angular to GitHub Pages
 on:
   push:
     branches:
-      - master
+      - master # O la rama principal que uses
 
 jobs:
   build-and-deploy:
@@ -22,12 +22,10 @@ jobs:
         run: npm ci
 
       - name: Build Angular app
-        run: npm run build -- --output-path=dist/browser --base-href=/WebAngular/
-
-      - name: Configure Git user
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
+        run: npx ng build --output-path=dist/browser --base-href=/WebAngular/
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/browser --no-silent
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: master
+          folder: dist/browser
